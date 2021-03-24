@@ -25,9 +25,11 @@ paddle_b.shapesize(stretch_wid=5, stretch_len=1)
 ball = turtle.Turtle()
 ball.speed(0)
 ball.shape("square")
-ball.color("white")
+ball.color("blue")
 ball.penup()
 ball.goto(0,0)
+ball.dx = 2
+ball.dy = 2
 
 def paddle_a_up():
     y = paddle_a.ycor()
@@ -59,4 +61,18 @@ gm.onkeypress(paddle_b_down, "Down")
 #main
 while True:
     gm.update()
+
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+    elif ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+    if ball.xcor() > 390 or ball.xcor() < -390:
+        ball.goto(0,0)
+        ball.dx *= -1
+
 
